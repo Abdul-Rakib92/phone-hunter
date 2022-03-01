@@ -1,32 +1,40 @@
+const searchResult = document.getElementById('search-result');
 const searchPhone = () => {
-    // document.getElementById("phone-container").innerHTML = "";
     const searchField = document.getElementById('search-field');
+    const error = document.getElementById("error");
     const searchText = searchField.value;
     // console.log(searchText);
+    // error handle
+    if(searchText == ""){
+        error.innerText=" Search Result not found";
+        searchField.value = '';
+        searchResult.innerHTML = "";
+        
+    }
+    else if(searchText <= 0){
+        error.innerText="Search Result not found";
+        searchField.value = '';
+        searchResult.innerHTML = "";
 
-    // clear data
-    searchField.value = '';
-    if (searchText == '') {
-        document.getElementById('error-message').style.display = 'block';
+    }
+    else{
+        searchResult.innerHTML = "";
+        const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
+    
+        // console.log(url);
+        fetch(url)
+        .then(res => res.json())
+        .then (data => displaySearchResult(data.data.slice(0,20)));
+        searchField.value = '';
+        error.innerHTML = "";
     }
 
-    //load data
-    const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
-    
-    // console.log(url);
-    fetch(url)
-    .then(res => res.json())
-    .then (data => displaySearchResult(data.data.slice(0,20)));
 }
 
-
+// phone search result
 const displaySearchResult = phones => {
     // console.log(phones);
-    const searchResult = document.getElementById('search-result');
-    searchResult.textContent = '';
-    // if(searchResult == 0 || searchResult == ''){
-    //     document.getElementById('error-message').style.display = 'block';
-    // }
+    searchResult.textContent = ''; 
     phones.forEach(phone => {
         // console.log(phone);
         const div = document.createElement('div');
@@ -45,6 +53,7 @@ const displaySearchResult = phones => {
     })
 }
 
+// phone information api
 const phoneDetail = phoneId => {
     // console.log(phoneId);
 
@@ -54,18 +63,18 @@ const phoneDetail = phoneId => {
     .then(data => displayPhoneDetail(data.data));
 }
 
+// phone more detaile information
 const displayPhoneDetail = phone => {
     console.log(phone);
     const phoneDetails = document.getElementById('phone-detail');
     phoneDetails.textContent = '';
-    
-
     const div = document.createElement('div');
     div.classList.add('card');
     div.innerHTML = `
 
         <div class="card border border-secondary border-3">
-            <img src="${phone.image}" class="card-img-top w-50 mx-auto p-2" alt="...">    
+            <img src="${phone.image}" class="card-img-top
+             w-50 mx-auto p-2" alt="...">    
             <div class="card-body">
             
                 <h4 class="card-title">${phone.name}</h4>
