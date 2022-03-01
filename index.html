@@ -12,7 +12,8 @@
 
 </head>
 <body>
-    <h1 class="text-center mt-5">Online Phone Shop</h1>
+    <section class="container">
+        <h1 class="text-center mt-5">Online <span class="text-success">Phone Shop</span></h1>
 
     <!-- phone search area -->
     <div class="input-group mb-3 w-50 mx-auto">
@@ -20,15 +21,25 @@
         <button onclick="searchPhone()" class="btn btn-outline-secondary" type="button" id="button-search">Search</button>
       </div>
 
+      <!-- <div id="phone-container" class="phone-container">
+
+      </div> -->
+
+      <!-- <div id="error-message" class="d-none">
+          <h3>No result found</h3>
+      </div> -->
+
       <!-- single phone detail -->
-      <div id="phone-detail">
+      <div id="phone-detail" class="w-50 p-4 mx-auto border-secondary border-3">
         
       </div>
 
       <!-- Phone search result -->
-      <div id="search-result" class="row row-cols-1 row-cols-md-3 g-4">
+      <div id="search-result" class="row row-cols-1 row-cols-md-3 g-4 w-75 p-3 mx-auto ">
         
       </div>
+
+    </section>
 
 
 
