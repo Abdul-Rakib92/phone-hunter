@@ -64,18 +64,29 @@ const displayPhoneDetail = phone => {
     div.classList.add('card');
     div.innerHTML = `
 
-        <div class="card border border-secondary border-3">"
+        <div class="card border border-secondary border-3">
             <img src="${phone.image}" class="card-img-top w-50 mx-auto p-2" alt="...">    
             <div class="card-body">
             
                 <h4 class="card-title">${phone.name}</h4>
                 
+                <p class="card-text"> <span class="fw-bolder">Brand: </span> ${phone?.brand}</p>
                 <p class="card-text"> <span class="fw-bolder">Release Date: </span> ${phone?.releaseDate}</p>
                 <p class="card-text"> <span class="fw-bolder">ChipSet: </span> ${phone?.mainFeatures?.chipSet}</p>
                 <p class="card-text"> <span class="fw-bolder">Display Size: </span> ${phone?.mainFeatures?.displaySize}</p>
                 <p class="card-text"> <span class="fw-bolder">Memory: </span> ${phone?.mainFeatures?.memory}</p>
                 <p class="card-text"> <span class="fw-bolder">Sensors: </span> ${phone?.mainFeatures?.sensors}</p>
                 <p class="card-text"> <span class="fw-bolder">Storage: </span> ${phone?.mainFeatures?.storage}</p>
+                <p class="text-center fw-bolder fs-5">Other Details</p>
+                <p class="card-text"> <span class="fw-bolder">Bluetooth: </span> ${phone?.others?.Bluetooth}</p>
+                <p class="card-text"> <span class="fw-bolder">GPS: </span> ${phone?.others?.GPS}</p>
+                <p class="card-text"> <span class="fw-bolder">NFC: </span> ${phone?.others?.NFC}</p>
+                <p class="card-text"> <span class="fw-bolder">Radio: </span> ${phone?.others?.Radio}</p>
+                <p class="card-text"> <span class="fw-bolder">USB: </span> ${phone?.others?.USB}</p>
+                <p class="card-text"> <span class="fw-bolder">WLAN: </span> ${phone?.others?.WLAN}</p>
+
+
+
             </div>
         </div>
     `;
