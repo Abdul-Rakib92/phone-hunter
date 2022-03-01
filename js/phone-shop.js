@@ -6,6 +6,9 @@ const searchPhone = () => {
 
     // clear data
     searchField.value = '';
+    if (searchText == '') {
+        document.getElementById('error-message').style.display = 'block';
+    }
 
     //load data
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
@@ -29,7 +32,7 @@ const displaySearchResult = phones => {
         const div = document.createElement('div');
         div.classList.add('col');
         div.innerHTML = `
-        <div class="card h-100 border-secondary border-3">
+        <div class="card h-100 border border-secondary border-3">
             <img src="${phone.image}" class="card-img-top w-50 mx-auto p-2" alt="...">
             <div class="card-body mx-auto">
                 <h5 class="card-title">${phone.phone_name}</h5>
@@ -56,32 +59,24 @@ const displayPhoneDetail = phone => {
     const phoneDetails = document.getElementById('phone-detail');
     phoneDetails.textContent = '';
     
+
     const div = document.createElement('div');
     div.classList.add('card');
     div.innerHTML = `
 
-        <img src="${phone.image}" class="card-img-top w-50 mx-auto p-2" alt="...">    
-        <div class="card-body">
+        <div class="card border border-secondary border-3">"
+            <img src="${phone.image}" class="card-img-top w-50 mx-auto p-2" alt="...">    
+            <div class="card-body">
             
-            <h4 class="card-title">${phone.name}</h4>
-            if(${phone.releaseDate} == null){
-                    'No Released date found'
-            }
-            else{
-                <h5 class="card-title">${phone.releaseDate}</h5>
-            }
-
+                <h4 class="card-title">${phone.name}</h4>
                 
-            <p class="card-text">${phone.mainFeatures.chipSet}</p>
-            <p class="card-text">${phone.mainFeatures.displaySize}</p>
-            <p class="card-text">${phone.mainFeatures.memory}</p>
-            <p class="card-text">${phone.mainFeatures.sensors[0]}</p>
-            <p class="card-text">${phone.mainFeatures.sensors[1]}</p>
-            <p class="card-text">${phone.mainFeatures.sensors[2]}</p>
-            <p class="card-text">${phone.mainFeatures.sensors[3]}</p>
-            <p class="card-text">${phone.mainFeatures.sensors[4]}</p>
-            <p class="card-text">${phone.mainFeatures.sensors[5]}</p>
-            <p class="card-text">${phone.mainFeatures.storage}</p>
+                <p class="card-text"> <span class="fw-bolder">Release Date: </span> ${phone?.releaseDate}</p>
+                <p class="card-text"> <span class="fw-bolder">ChipSet: </span> ${phone?.mainFeatures?.chipSet}</p>
+                <p class="card-text"> <span class="fw-bolder">Display Size: </span> ${phone?.mainFeatures?.displaySize}</p>
+                <p class="card-text"> <span class="fw-bolder">Memory: </span> ${phone?.mainFeatures?.memory}</p>
+                <p class="card-text"> <span class="fw-bolder">Sensors: </span> ${phone?.mainFeatures?.sensors}</p>
+                <p class="card-text"> <span class="fw-bolder">Storage: </span> ${phone?.mainFeatures?.storage}</p>
+            </div>
         </div>
     `;
     phoneDetails.appendChild(div);
